@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include "scalar.h"
 
 struct Vector init_vector(int size, void *data, const struct FieldInfo *fieldInfo) {
     assert(size > 0 && fieldInfo != NULL);

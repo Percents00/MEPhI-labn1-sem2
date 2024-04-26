@@ -1,5 +1,5 @@
-#ifndef LABA1_FIELDINFO_H
-#define LABA1_FIELDINFO_H
+#ifndef FIELDINFO_H
+#define FIELDINFO_H
 
 struct FieldInfo {
     int element_size;

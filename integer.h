@@ -1,5 +1,5 @@
-#ifndef LABA1_INTEGER_H
-#define LABA1_INTEGER_H
+#ifndef INTEGER_H
+#define INTEGER_H
 
 
 struct FieldInfo* get_int_fieldInfo();

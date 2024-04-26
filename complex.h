@@ -1,5 +1,5 @@
-#ifndef LABA1_COMPLEX_H
-#define LABA1_COMPLEX_H
+#ifndef COMPLEX_H
+#define COMPLEX_H
 
 typedef struct{
     float real;

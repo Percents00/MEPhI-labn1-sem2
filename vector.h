@@ -1,7 +1,6 @@
-#ifndef LABA1_VECTOR_H
-#define LABA1_VECTOR_H
+#ifndef VECTOR_H
+#define VECTOR_H
 #include "FieldInfo.h"
-#include "scalar.h"
 
 
 struct Vector {

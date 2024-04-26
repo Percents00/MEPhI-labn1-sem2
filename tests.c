@@ -9,7 +9,6 @@
 #include "integer.h"
 #include "complex.h"
 #include "float.h"
-#include "scalar.h"
 
 
 void test_int_sum1() {

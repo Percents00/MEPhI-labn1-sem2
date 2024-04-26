@@ -1,5 +1,5 @@
-#ifndef LABA1_FLOAT_H
-#define LABA1_FLOAT_H
+#ifndef FLOAT_H
+#define FLOAT_H
 
 
 struct FieldInfo* get_float_fieldInfo();
