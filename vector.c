@@ -39,37 +39,16 @@ void print_vector(struct Vector vec) {
     }
 }
 
-struct Vector vector_scalar_multiplication(struct Vector vec, Scalar scalar) {
-    if (vec.size == 0) {
-        return vec;
+struct Vector vector_scalar_multiplication(struct Vector vec, void *scalar) {
+    assert(vec.size > 0);
+    struct Vector result;
+    result.size = vec.size;
+    result.fieldInfo = vec.fieldInfo;
+    for (int i = 0; i < result.size; i++) {
+        vec.fieldInfo->
     }
 
-    struct Vector result_vec = {
-            .fieldInfo = vec.fieldInfo,
-            .size = vec.size,
-            .data = malloc(vec.size * vec.fieldInfo->element_size)
-    };
-
-    if (result_vec.data == NULL) {
-        fprintf(stderr, "Mem error!\n");
-        exit(1);
-    }
-
-    for (int i = 0; i < vec.size; i++) {
-        void *element_pointer = (char *) vec.data + i * vec.fieldInfo->element_size;
-        void *result_vec_pointer = (char *) result_vec.data + i * vec.fieldInfo->element_size;
-
-        if (scalar.i) {
-            vec.fieldInfo->multiplication_two_elements(element_pointer, &scalar.i, result_vec_pointer);
-        } else if (scalar.f != 0) {
-            vec.fieldInfo->multiplication_two_elements(element_pointer, &scalar.f, result_vec_pointer);
-        } else {
-            ComplexNumber *c_pointer = &scalar.c;
-            vec.fieldInfo->multiplication_two_elements(element_pointer, c_pointer, result_vec_pointer);
-        }
-    }
-
-    return result_vec;
+    return result;
 }
 
 struct Vector vector_addition(struct Vector vec1, struct Vector vec2) {
