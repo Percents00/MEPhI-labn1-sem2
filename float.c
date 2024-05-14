@@ -13,25 +13,29 @@ struct FieldInfo *get_float_fieldInfo() {
         FLOAT_FIELD_INFO->multiplication_two_elements = float_multiplication_two_elements;
         FLOAT_FIELD_INFO->output = float_output;
         FLOAT_FIELD_INFO->equality = float_equality;
+        FLOAT_FIELD_INFO->scalar_mupltiplication = float_scalar_multiplication;
     }
     return FLOAT_FIELD_INFO;
 }
 
 
 
-void float_sum_two_elements(void *element1, void *element2, void *result) {
+void float_sum_two_elements(const void *element1, const void *element2, void *result) {
     *(float *) result = *(float *) element1 + *(float *) element2;
 }
 
-void float_multiplication_two_elements(void *element1, void *element2, void *result) {
+void float_multiplication_two_elements(const void *element1, const void *element2, void *result) {
     *(float *) result = *(float *) element1 * *(float *) element2;
 }
 
-void float_output(void *element) {
+void float_output(const void *element) {
     printf("%f", *(float *) element);
 }
 
-int float_equality(void *element1, void *element2) {
+int float_equality(const void *element1, const void *element2) {
     return *(float *) element1 == *(float *) element2;
 }
 
+void float_scalar_multiplication(const void *element, int scalar, void *result) {
+    *(float *) result = *(float *) element * scalar;
+}

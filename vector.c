@@ -31,6 +31,7 @@ void print_vector(struct Vector vec) {
     if (vec.size == 0) {
         printf("Vector is empty\n");
         return;}
+
     for (int i = 0; i < vec.size; i++) {
         void* element_pointer = (char*)vec.data + i * vec.fieldInfo->element_size;
         vec.fieldInfo->output(element_pointer);
@@ -39,38 +40,51 @@ void print_vector(struct Vector vec) {
     }
 }
 
-struct Vector vector_scalar_multiplication(struct Vector vec, void *scalar) {
-    assert(vec.size > 0);
-    struct Vector result;
-    result.size = vec.size;
-    result.fieldInfo = vec.fieldInfo;
-    for (int i = 0; i < result.size; i++) {
-        vec.fieldInfo->
-    }
-
-    return result;
-}
-
 struct Vector vector_addition(struct Vector vec1, struct Vector vec2) {
     if (vec1.size != vec2.size) {
         printf("Different vector' sizes");
         exit(1);}
+
     if (vec1.size == 0 && vec2.size != 0) {
         return vec2;}
+
     if (vec1.size != 0 && vec2.size == 0) {
         return vec1;}
+
     struct Vector result_vec = {
             .fieldInfo = vec1.fieldInfo,
             .size = vec1.size,
             .data = malloc(vec1.size * vec1.fieldInfo->element_size)};
+
     if (result_vec.data == NULL) {
         fprintf(stderr, "Mem error!");
         exit(1);}
+
     for (int i = 0; i < vec1.size; i++) {
         void *element1_ptr = (char *) vec1.data + i * vec1.fieldInfo->element_size;
         void *element2_ptr = (char *) vec2.data + i * vec2.fieldInfo->element_size;
         void *result_ptr = (char *) result_vec.data + i * result_vec.fieldInfo->element_size;
         vec1.fieldInfo->sum_two_elements(element1_ptr, element2_ptr, result_ptr);}
+        
+    return result_vec;
+}
+
+struct Vector vector_scalar_multiplication(struct Vector vec, void *scalar) {
+    assert(vec.size > 0 && scalar != NULL); 
+    struct Vector result_vec = {
+        .fieldInfo = vec.fieldInfo,
+        .size = vec.size,
+        .data = malloc(vec.size * vec.fieldInfo->element_size)};
+    
+    if (result_vec.data == NULL) {
+        fprintf(stderr, "Mem error!");
+        exit(1);}
+    
+    for (int i = 0; i < vec.size; i++) {
+        void *element_pointer = (char *)vec.data + i * vec.fieldInfo->element_size;
+        void *result_pointer = (char *)result_vec.data + i * result_vec.fieldInfo->element_size;
+        vec.fieldInfo->scalar_mupltiplication(element_pointer, *(int*)scalar, result_pointer);
+    }
     return result_vec;
 }
 
@@ -86,3 +100,5 @@ int equal_vectors(struct Vector vec1, struct Vector vec2) {
 
     return 1;
 }
+
+
